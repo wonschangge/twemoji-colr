@@ -10,6 +10,8 @@ var extrasDir = process.argv[4];
 var targetDir = process.argv[5];
 var fontName = process.argv[6];
 
+let baseCount = 61697; // 对应UNICODE码点 0xf101
+
 if (fontName === undefined) {
     console.error("### Missing font name.");
     console.error("### Usage: node " + process.argv[1] + " source-SVGs.zip overrides-dir extras-dir build-dir font-name");
@@ -63,15 +65,17 @@ function expandColor(c) {
     if (c === 'none') {
         return c;
     }
-    if (c === 'red') {
-        c = '#f00';
-    } else if (c === 'green') {
-        c = '#008000';
-    } else if (c === 'blue') {
-        c = '#00f';
-    } else if (c === 'navy') {
-        c = '#000080';
+
+    // 遇到 ttx CPAL 部分报错时，查看 ttx 文件中的对应部分内容，来此增加色值解析
+    switch (c) {
+        case 'red': c = '#f00';break;
+        case 'green': c = '#008000';break;
+        case 'blue': c = '#00f';break;
+        case 'navy': c = '#000080';break;
+        case 'black': c = '#000';break;
+        case 'white': c = '#fff';break;
     }
+
     // c is a hex color that might be shorthand (3 instead of 6 digits)
     if (c.substr(0, 1) === '#' && c.length === 4) {
         c = '#' + c.substr(1, 1) + c.substr(1, 1)
@@ -395,10 +399,10 @@ function processFile(fileName, data) {
     });
 
     // Save the original file also for visual comparison
-    fs.writeFileSync(targetDir + "/colorGlyphs/u" + baseName + ".svg", data);
+    fs.writeFileSync(targetDir + "/colorGlyphs/" + baseName + ".svg", data);
 
     // split name of glyph that corresponds to multi-char ligature
-    var unicodes = baseName.split("-");
+    var unicodes = [baseName];
 
     parser.parseString(data, function (err, result) {
         var paths = [];
@@ -418,10 +422,10 @@ function processFile(fileName, data) {
                     if (e['$$'] === undefined) {
                         return;
                     }
-                    e['$$'].forEach(function (def) {
+                    e['$$'].forEach((def) => {
                         if (def['#name'] === 'linearGradient') {
                             recordGradient(def, urlColor);
-                        } else {
+                        } else if (def['$']?.['id']) {
                             var id = '#' + def['$']['id'];
                             defs[id] = def;
                         }
@@ -507,9 +511,9 @@ function processFile(fileName, data) {
                     }
                     if (fill !== 'none') {
                         var f = JSON.parse(JSON.stringify(e));
-                        f['$']['stroke'] = 'none';
-                        f['$']['stroke-width'] = '0';
-                        f['$']['fill'] = '#000';
+                        // f['$']['stroke'] = 'none';
+                        // f['$']['stroke-width'] = '0';
+                        // f['$']['fill'] = '#000';
                         if (opacity !== 1.0) {
                             fill = applyOpacity(fill, opacity);
                         }
@@ -559,7 +563,7 @@ function processFile(fileName, data) {
 
         var layerIndex = 0;
         var layers = [];
-        paths.forEach(function (path) {
+        paths.forEach((path) => {
             var svg = xmlbuilder.create("svg");
             for (var i in result['svg']['$']) {
                 svg.att(i, result['svg']['$'][i]);
@@ -575,8 +579,8 @@ function processFile(fileName, data) {
             if (glyphName === undefined) {
                 glyphName = baseName + "_layer" + layerIndex;
                 components[svgString] = glyphName;
-                codepoints.push('"u' + glyphName + '": -1');
-                fs.writeFileSync(targetDir + "/glyphs/u" + glyphName + ".svg", svgString);
+                codepoints.push(`"${glyphName}": -1`);
+                fs.writeFileSync(`${targetDir}/glyphs/${glyphName}.svg`, svgString);
             }
 
             // add to the glyph's list of color layers
@@ -592,19 +596,20 @@ function processFile(fileName, data) {
 
         if (unicodes.length === 1) {
             // simple character (single codepoint)
-            chars.push({unicode: unicodes[0], components: layers});
+            ligatures.push({unicodes: unicodes[0], components: layers});
         } else {
             ligatures.push({unicodes: unicodes, components: layers});
             // create the placeholder glyph for the ligature (to be mapped to a set of color layers)
-            fs.writeFileSync(targetDir + "/glyphs/u" + unicodes.join("_") + ".svg",
+            fs.writeFileSync(targetDir + "/glyphs/" + unicodes.join("_") + ".svg",
                 '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" enable-background="new 0 0 64 64"></svg>');
-            codepoints.push('"u' + unicodes.join("_") + '": -1');
+            codepoints.push(`"${unicodes.join("_")}": -1`);
         }
-        unicodes.forEach(function (u) {
+        unicodes.forEach((u) => {
             // make sure we have a placeholder glyph for the individual character, or for each component of the ligature
-            fs.writeFileSync(targetDir + "/glyphs/u" + u + ".svg",
+            fs.writeFileSync(targetDir + `/glyphs/${u}.svg`,
                 '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" enable-background="new 0 0 64 64"></svg>');
-            codepoints.push('"u' + u + '": ' + parseInt(u, 16));
+            // codepoints.push('"u' + u + '": ' + parseInt(u, 16));
+            codepoints.push(`"${u}": ${baseCount++}`);
         });
     });
 }
@@ -625,22 +630,18 @@ function generateTTX() {
     var COLR = ttFont.ele("COLR");
     COLR.ele("version", {value: 0});
     chars.forEach(function (ch) {
-        var colorGlyph = COLR.ele("ColorGlyph", {name: "u" + ch.unicode});
-        ch.components.forEach(function (cmp) {
-            colorGlyph.ele("layer", {colorID: colorToId[cmp.color], name: "u" + cmp.glyphName});
+        var colorGlyph = COLR.ele("ColorGlyph", {name: ch.unicode});
+        ch.components.forEach((cmp) => {
+            colorGlyph.ele("layer", {colorID: colorToId[cmp.color], name: cmp.glyphName});
         });
-        layerInfo[ch.unicode] = ch.components.map(function (cmp) {
-            return "u" + cmp.glyphName;
-        });
+        layerInfo[ch.unicode] = ch.components.map((cmp) => cmp.glyphName);
     });
     ligatures.forEach(function (lig) {
-        var colorGlyph = COLR.ele("ColorGlyph", {name: "u" + lig.unicodes.join("_")});
+        var colorGlyph = COLR.ele("ColorGlyph", {name: lig.unicodes});
         lig.components.forEach(function (cmp) {
-            colorGlyph.ele("layer", {colorID: colorToId[cmp.color], name: "u" + cmp.glyphName});
+            colorGlyph.ele("layer", {colorID: colorToId[cmp.color], name: cmp.glyphName});
         });
-        layerInfo[lig.unicodes.join("_")] = lig.components.map(function (cmp) {
-            return "u" + cmp.glyphName;
-        });
+        layerInfo[lig.unicodes] = lig.components.map((cmp) => cmp.glyphName);
     });
     fs.writeFileSync(targetDir + "/layer_info.json", JSON.stringify(layerInfo, null, 2));
 
@@ -650,7 +651,7 @@ function generateTTX() {
     CPAL.ele("numPaletteEntries", {value: colors.length});
     var palette = CPAL.ele("palette", {index: 0});
     var index = 0;
-    colors.forEach(function (c) {
+    colors.forEach((c) => {
         if (c.substr(0, 3) === "url") {
             console.log("unexpected color: " + c);
             c = "#000000ff";
@@ -683,27 +684,45 @@ function generateTTX() {
     var ligatureSubst = lookup.ele("LigatureSubst", {index: 0, Format: 1});
     var ligatureSets = {};
     var ligatureSetKeys = [];
-    var addLigToSet = function (lig) {
-        var startGlyph = "u" + lig.unicodes[0];
-        var components = "u" + lig.unicodes.slice(1).join(",u");
-        var glyphName = lig.glyphName || "u" + lig.unicodes.join("_");
+    var addLigToSet = (lig) => {
+        var startGlyph = lig.unicodes[0];
+        var components = [...lig.unicodes.slice(1)].join(",");
+        var glyphName = lig.glyphName || lig.unicodes;
         if (ligatureSets[startGlyph] === undefined) {
             ligatureSetKeys.push(startGlyph);
             ligatureSets[startGlyph] = [];
         }
-        ligatureSets[startGlyph].push({components: components, glyph: glyphName});
+
+        // 当该 ligature 的 components 数量为 1 时, 说明是之前 gaia-icons 中的单色字形
+        // 对此, 如果依旧使用诸如 2g - 2g_layer0 的组合, 将使得在使用时无法设置 2g 单色字形的颜色,
+        // 在设置轻淡模式, 黑暗模式时造成困扰.
+        // 基于此, 测试发现设置原 2g_layer0 字形的颜色时可生效, 故如下将 2g 的 glyph 绑定至 2g_layer0 上.
+        if (lig.components.length === 1) {
+            ligatureSets[startGlyph].push({components: components, glyph: lig.components[0].glyphName});
+        } else {
+            ligatureSets[startGlyph].push({components: components, glyph: glyphName});
+        }
+
+        // 仅测试使用: 将 components 中的内容(xx_layer0,1..)也添加进去
+        if (process.env['ENABLE_LAYERS_LIGATURE'] === '1') {
+            if (lig.components) {
+                for (const component of lig.components) {
+                    const glyphName = component.glyphName
+                    const components = [...glyphName.slice(1)].join(",");
+                    ligatureSets[startGlyph].push({components: components, glyph: glyphName});
+                }
+            }
+        }
     }
     ligatures.forEach(addLigToSet);
     extraLigatures.forEach(addLigToSet);
     ligatureSetKeys.sort();
-    ligatureSetKeys.forEach(function (glyph) {
+    ligatureSetKeys.forEach((glyph) => {
         var ligatureSet = ligatureSubst.ele("LigatureSet", {glyph: glyph});
         var set = ligatureSets[glyph];
         // sort ligatures with more components first
-        set.sort(function (a, b) {
-            return b.components.length - a.components.length;
-        });
-        set.forEach(function (lig) {
+        set.sort((a, b) => b.components.length - a.components.length);
+        set.forEach((lig) => {
             ligatureSet.ele("Ligature", {components: lig.components, glyph: lig.glyph});
         });
     });
@@ -714,7 +733,7 @@ function generateTTX() {
     ttx.end();
 
     // Write out the codepoints file to control character code assignments by grunt-webfont
-    fs.writeFileSync(targetDir + "/codepoints.js", "{\n" + codepoints.join(",\n") + "\n}\n");
+    fs.writeFileSync(targetDir + "/codepoints.json", "{\n" + codepoints.join(",\n") + "\n}\n");
 }
 
 // Delete and re-create target directory, to remove any pre-existing junk
@@ -737,7 +756,9 @@ rmdir(targetDir, function () {
     var overrides = fs.readdirSync(overridesDir);
 
     // Finally, we're ready to process the images from the main source archive:
-    fs.createReadStream(sourceZip).pipe(unzip.Parse()).on('entry', function (e) {
+    fs.createReadStream(sourceZip)
+    .pipe(unzip.Parse())
+    .on('entry', (e) => {
         var data = "";
         var fileName = e.path.replace(/^.*\//, ""); // strip any directory names
         if (e.type === 'File' && e.path.substr(-4, 4) === '.svg') {
@@ -760,5 +781,6 @@ rmdir(targetDir, function () {
         } else {
             e.autodrain();
         }
-    }).on('close', generateTTX);
+    })
+    .on('close', generateTTX);
 });
