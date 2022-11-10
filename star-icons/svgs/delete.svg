@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="32px" height="32px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>删除_lm</title>
+    <g id="删除_lm" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M26,9 L26,24 C26,26.7614237 23.7614237,29 21,29 L11,29 C8.23857625,29 6,26.7614237 6,24 L6,9 L26,9 Z M24,11 L8,11 L8,24 C8,25.5976809 9.24891996,26.9036609 10.8237272,26.9949073 L11,27 L21,27 C22.5976809,27 23.9036609,25.75108 23.9949073,24.1762728 L24,24 L24,11 Z" id="矩形" fill="#333333" fill-rule="nonzero"></path>
+        <path d="M21,4 C22.6568542,4 24,5.34314575 24,7 L24,11 L8,11 L8,7 C8,5.34314575 9.34314575,4 11,4 L21,4 Z M21,6 L11,6 C10.4871642,6 10.0644928,6.38604019 10.0067277,6.88337887 L10,7 L10,9 L22,9 L22,7 C22,6.48716416 21.6139598,6.06449284 21.1166211,6.00672773 L21,6 Z" id="矩形" fill="#333333" fill-rule="nonzero"></path>
+        <rect id="矩形" fill="#333333" x="3" y="9" width="26" height="2"></rect>
+        <rect id="矩形" fill="#333333" x="12" y="14" width="2" height="10"></rect>
+        <rect id="矩形备份" fill="#333333" x="18" y="14" width="2" height="10"></rect>
+    </g>
+</svg>

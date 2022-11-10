@@ -4,6 +4,7 @@ PERL       ?= perl
 # PYTHON     ?= python3
 PYTHON     ?= fontforge -lang=py -script
 TTX        ?= ttx
+ZIP				 ?= zip
 
 # FONT_NAME  = Twemoji\ Mozilla
 FONT_NAME  = star-icons
@@ -12,11 +13,16 @@ BUILD_DIR  = build
 
 FINAL_TARGET = $(BUILD_DIR)/$(FONT_NAME).ttf
 
+TEST_HTML = FONT_NAME=${FONT_NAME} ${NODE} generateTestHTML.js
+
 # SVGS         = twe-svg.zip
 # SVGS         = twe-svg-only-one.zip # JUST TEST
 SVGS         = star-icons.zip
 OVERRIDE_DIR = overrides
 EXTRA_DIR    = extras
+
+# TEST FONT GENERATION
+ENABLE_LAYERS_LIGATURE = 0
 
 GRUNTFILE  = Gruntfile.js
 LAYERIZE   = layerize.js
@@ -40,12 +46,16 @@ $(FINAL_TARGET) : $(RAW_FONT) $(OT_SOURCE)
 	$(TTX) -m $(RAW_FONT) -o $(RAW_FONT_TEMPORARY) $(RAW_FONT).names
 	$(PYTHON) fixDirection.py $(RAW_FONT_TEMPORARY)
 	$(TTX) -m $(RAW_FONT_TEMPORARY) -o $(FINAL_TARGET) $(OT_SOURCE)
+	$(TEST_HTML)
 
 $(RAW_FONT) : $(CODEPOINTS) $(GRUNTFILE)
 	FONT_NAME=${FONT_NAME} $(NPM) run grunt webfont
 
 $(CODEPOINTS) $(OT_SOURCE) : $(LAYERIZE) $(SVGS) $(OVERRIDE_DIR) $(EXTRA_DIR)
-	$(NODE) $(LAYERIZE) $(SVGS) $(OVERRIDE_DIR) $(EXTRA_DIR) $(BUILD_DIR) $(FONT_NAME)
+	ENABLE_LAYERS_LIGATURE=${ENABLE_LAYERS_LIGATURE} $(NODE) $(LAYERIZE) $(SVGS) $(OVERRIDE_DIR) $(EXTRA_DIR) $(BUILD_DIR) $(FONT_NAME)
 
-test:
-	FONT_NAME=${FONT_NAME} ${NODE} generateTestHTML.js
+$(SVGS) :
+	ifneq [ -f $(SVGS) ]; then ${ZIP} -r ${FONT_NAME}.zip ${FONT_NAME}; fi
+
+test :
+	$(TEST_HTML)
