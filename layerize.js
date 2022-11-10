@@ -683,7 +683,7 @@ function generateTTX() {
     var ligatureSubst = lookup.ele("LigatureSubst", {index: 0, Format: 1});
     var ligatureSets = {};
     var ligatureSetKeys = [];
-    var addLigToSet = function (lig) {
+    var addLigToSet = (lig) => {
         var startGlyph = lig.unicodes[0];
         var components = [...lig.unicodes.slice(1)].join(",");
         var glyphName = lig.glyphName || lig.unicodes;
@@ -691,19 +691,37 @@ function generateTTX() {
             ligatureSetKeys.push(startGlyph);
             ligatureSets[startGlyph] = [];
         }
-        ligatureSets[startGlyph].push({components: components, glyph: glyphName});
+
+        // 当该 ligature 的 components 数量为 1 时, 说明是之前 gaia-icons 中的单色字形
+        // 对此, 如果依旧使用诸如 2g - 2g_layer0 的组合, 将使得在使用时无法设置 2g 单色字形的颜色,
+        // 在设置轻淡模式, 黑暗模式时造成困扰.
+        // 基于此, 测试发现设置原 2g_layer0 字形的颜色时可生效, 故如下将 2g 的 glyph 绑定至 2g_layer0 上.
+        if (lig.components.length === 1) {
+            ligatureSets[startGlyph].push({components: components, glyph: lig.components[0].glyphName});
+        } else {
+            ligatureSets[startGlyph].push({components: components, glyph: glyphName});
+        }
+
+        // 仅测试使用: 将 components 中的内容(xx_layer0,1..)也添加进去
+        if (process.env['ENABLE_LAYERS_LIGATURE'] === '1') {
+            if (lig.components) {
+                for (const component of lig.components) {
+                    const glyphName = component.glyphName
+                    const components = [...glyphName.slice(1)].join(",");
+                    ligatureSets[startGlyph].push({components: components, glyph: glyphName});
+                }
+            }
+        }
     }
     ligatures.forEach(addLigToSet);
     extraLigatures.forEach(addLigToSet);
     ligatureSetKeys.sort();
-    ligatureSetKeys.forEach(function (glyph) {
+    ligatureSetKeys.forEach((glyph) => {
         var ligatureSet = ligatureSubst.ele("LigatureSet", {glyph: glyph});
         var set = ligatureSets[glyph];
         // sort ligatures with more components first
-        set.sort(function (a, b) {
-            return b.components.length - a.components.length;
-        });
-        set.forEach(function (lig) {
+        set.sort((a, b) => b.components.length - a.components.length);
+        set.forEach((lig) => {
             ligatureSet.ele("Ligature", {components: lig.components, glyph: lig.glyph});
         });
     });
