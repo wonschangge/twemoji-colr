@@ -1,33 +1,14 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!-- Created with Inkscape (http://www.inkscape.org/) -->
-
-<svg
-   xmlns:dc="http://purl.org/dc/elements/1.1/"
-   xmlns:cc="http://creativecommons.org/ns#"
-   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-   xmlns:svg="http://www.w3.org/2000/svg"
-   xmlns="http://www.w3.org/2000/svg"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   version="1.1"
-   width="30"
-   height="30"
-   viewBox="0 0 30 30"
-   id="svg2">
-  <metadata
-     id="metadata10">
-    <rdf:RDF>
-      <cc:Work
-         rdf:about="">
-        <dc:format>image/svg+xml</dc:format>
-        <dc:type
-           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-      </cc:Work>
-    </rdf:RDF>
-  </metadata>
-  <defs
-     id="defs8" />
-  <path
-     d="M 9.047,2.53 C 8.519,2.53 7.984,3.15 7.984,3.97 V 5.5 h -1 c -2.168,0 -4,1.773 -4,4 v 14 c 0,2.226 1.83,3.97 4,3.97 h 16 c 2.227,0 4.032,-1.743 4.032,-3.97 v -14 c 0,-2.226 -1.806,-4 -4.032,-4 h -1 V 3.97 c 0,-0.82 -0.41,-1.44 -0.937,-1.44 -0.528,0 -1.063,0.62 -1.063,1.44 V 5.5 H 10.047 V 3.97 c 0,-0.82 -0.472,-1.44 -1,-1.44 z M 6.984,8.5 h 16 c 1.112,0 2.063,0.887 2.063,2 v 13 c 0,1.112 -0.95,2 -2.063,2 h -16 c -1.053,0 -2,-0.887 -2,-2 v -13 c 0,-1.112 0.945,-2 2,-2 z"
-     inkscape:connector-curvature="0"
-     id="path4" />
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="48px" height="48px" viewBox="0 0 48 48" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>日历_lm</title>
+    <g id="日历_lm" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="日历" transform="translate(7.000000, 7.000000)" fill="#4D4D4D" fill-rule="nonzero">
+            <path d="M30,2 C32.209139,2 34,3.790861 34,6 L34,30 C34,32.209139 32.209139,34 30,34 L4,34 C1.790861,34 0,32.209139 0,30 L0,6 C0,3.790861 1.790861,2 4,2 L30,2 Z M30,5 L4,5 C3.48716416,5 3.06449284,5.38604019 3.00672773,5.88337887 L3,6 L3,30 C3,30.5128358 3.38604019,30.9355072 3.88337887,30.9932723 L4,31 L30,31 C30.5128358,31 30.9355072,30.6139598 30.9932723,30.1166211 L31,30 L31,6 C31,5.48716416 30.6139598,5.06449284 30.1166211,5.00672773 L30,5 Z" id="矩形"></path>
+            <rect id="矩形" x="9" y="0" width="3" height="8" rx="1.5"></rect>
+            <rect id="矩形" x="22" y="0" width="3" height="8" rx="1.5"></rect>
+            <rect id="矩形" x="3" y="10" width="28" height="3"></rect>
+            <rect id="矩形" x="13" y="16" width="8" height="3"></rect>
+            <polygon id="路径" points="14 28 18 19 21 19 17 28"></polygon>
+        </g>
+    </g>
 </svg>

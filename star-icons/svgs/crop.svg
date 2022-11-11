@@ -1,33 +1,13 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!-- Created with Inkscape (http://www.inkscape.org/) -->
-
-<svg
-   xmlns:dc="http://purl.org/dc/elements/1.1/"
-   xmlns:cc="http://creativecommons.org/ns#"
-   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-   xmlns:svg="http://www.w3.org/2000/svg"
-   xmlns="http://www.w3.org/2000/svg"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   version="1.1"
-   width="30"
-   height="30"
-   viewBox="0 0 30 30"
-   id="svg2">
-  <metadata
-     id="metadata10">
-    <rdf:RDF>
-      <cc:Work
-         rdf:about="">
-        <dc:format>image/svg+xml</dc:format>
-        <dc:type
-           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-      </cc:Work>
-    </rdf:RDF>
-  </metadata>
-  <defs
-     id="defs8" />
-  <path
-     d="m 21.872,8.908 c 0.043,0.125 0.078,0.255 0.078,0.394 V 20.34 h 3.09 c 0.053,0.527 0.08,1.06 0.082,1.602 H 21.95 v 3.18 c -0.54,0 -1.074,-0.03 -1.602,-0.08 v -3.1 H 9.313 C 8.625,21.942 8.069,21.384 8.069,20.7 V 9.664 H 5 C 4.948,9.136 4.92,8.601 4.918,8.06 h 3.15 V 4.88 C 8.61,4.882 9.146,4.91 9.673,4.96 v 3.1 H 20.71 c 0.13,0 0.254,0.036 0.375,0.076 L 24.47,4.75 c 0.312,0.204 0.576,0.47 0.78,0.78 l -3.377,3.38 z m -12.2,0.756 v 9.883 L 19.555,9.664 H 9.673 z m 0.77,10.675 h 9.907 v -9.91 l -9.91,9.9 z"
-     inkscape:connector-curvature="0"
-     id="path4" />
+<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_6482_301188)">
+<path d="M33 10H5.5C4.67157 10 4 10.6716 4 11.5C4 12.3284 4.67157 13 5.5 13H8H33C34.1046 13 35 13.8954 35 15L35 42.5C35 43.3284 35.6716 44 36.5 44C37.3284 44 38 43.3284 38 42.5C38 42.4989 38 42.4977 38 42.4966V15C38 12.2386 35.7614 10 33 10Z" fill="#4D4D4D"/>
+<path d="M9 6.5C9 5.67157 9.67157 5 10.5 5C11.3284 5 12 5.67157 12 6.5V13H9V6.5Z" fill="#4D4D4D"/>
+<path d="M14 36H31.5C32.3284 36 33 36.6716 33 37.5C33 38.3284 32.3284 39 31.5 39H14C11.2386 39 9 36.7614 9 34V16.5C9 15.6716 9.67157 15 10.5 15C11.3284 15 12 15.6716 12 16.5V34C12 35.1046 12.8954 36 14 36Z" fill="#4D4D4D"/>
+<path d="M41.5 39H35V36H41.5C42.3284 36 43 36.6716 43 37.5C43 38.3284 42.3284 39 41.5 39Z" fill="#4D4D4D"/>
+</g>
+<defs>
+<clipPath id="clip0_6482_301188">
+<rect width="48" height="48" fill="white"/>
+</clipPath>
+</defs>
 </svg>

@@ -1,33 +1,12 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!-- Created with Inkscape (http://www.inkscape.org/) -->
-
-<svg
-   xmlns:dc="http://purl.org/dc/elements/1.1/"
-   xmlns:cc="http://creativecommons.org/ns#"
-   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-   xmlns:svg="http://www.w3.org/2000/svg"
-   xmlns="http://www.w3.org/2000/svg"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   version="1.1"
-   width="32"
-   height="32"
-   viewBox="0 0 32 32"
-   id="svg2">
-  <metadata
-     id="metadata10">
-    <rdf:RDF>
-      <cc:Work
-         rdf:about="">
-        <dc:format>image/svg+xml</dc:format>
-        <dc:type
-           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-      </cc:Work>
-    </rdf:RDF>
-  </metadata>
-  <defs
-     id="defs8" />
-  <path
-     d="m 15.983,9.56 c -3.55,0 -6.43,2.88 -6.43,6.43 0,3.55 2.88,6.43 6.43,6.43 3.55,0 6.43,-2.88 6.43,-6.43 0,-3.55 -2.88,-6.43 -6.43,-6.43 z M 26.173,4.98 H 5.826 c -1.844,0 -3.34,1.496 -3.34,3.34 v 15.36 c 0,1.844 1.496,3.34 3.34,3.34 H 26.17 c 1.845,0 3.34,-1.496 3.34,-3.34 V 8.32 c 0,-1.844 -1.495,-3.34 -3.34,-3.34 z M 16.008,24.013 c -4.426,0 -8.013,-3.587 -8.013,-8.012 0,-4.425 3.587,-8.01 8.012,-8.01 4.424,0 8.01,3.59 8.01,8.01 0,4.42 -3.586,8.02 -8.01,8.02 z"
-     inkscape:connector-curvature="0"
-     id="path4" />
+<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_6482_301229)">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M24 22C21.7915 22 20 23.7897 20 26C20 28.2103 21.7915 30 24 30C26.2142 30 28 28.2125 28 26C28 23.7875 26.2142 22 24 22ZM17 26C17 22.1318 20.1357 19 24 19C27.8722 19 31 22.1318 31 26C31 29.8682 27.8722 33 24 33C20.1357 33 17 29.8682 17 26Z" fill="#4D4D4D"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M37 16C35.9 16 35 16.89 35 17.9951C35 19.1002 35.9 20 37 20C38.1 20 39 19.1002 39 17.9951C39 16.89 38.1 16 37 16Z" fill="#4D4D4D"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M14.3759 11L15.8657 7.7519C16.3532 6.67848 17.408 6 18.5721 6H29.4279C30.592 6 31.6468 6.67848 32.1343 7.7519L33.6241 11H38C41.3137 11 44 13.6863 44 17V35C44 38.3137 41.3137 41 38 41H10C6.68629 41 4 38.3137 4 35V17C4 13.6863 6.68629 11 10 11H14.3759ZM17.6764 11H30.3236L29.4063 9H18.5937L18.5926 9.00258L17.6764 11ZM10 14C8.34315 14 7 15.3431 7 17V35C7 36.6569 8.34315 38 10 38H38C39.6569 38 41 36.6569 41 35V17C41 15.3431 39.6569 14 38 14H10Z" fill="#595959"/>
+</g>
+<defs>
+<clipPath id="clip0_6482_301229">
+<rect width="48" height="48" fill="white"/>
+</clipPath>
+</defs>
 </svg>

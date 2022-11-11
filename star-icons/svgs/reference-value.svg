@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="48px" height="48px" viewBox="0 0 48 48" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>基准值_lm</title>
+    <g id="基准值_lm" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g transform="translate(4.000000, 9.000000)" fill="#4D4D4D" fill-rule="nonzero" id="矩形">
+            <path d="M35,0 C37.209139,0 39,1.790861 39,4 L39,20 C39,22.209139 37.209139,24 35,24 L4,24 C1.790861,24 0,22.209139 0,20 L0,4 C0,1.790861 1.790861,0 4,0 L35,0 Z M35,3 L4,3 C3.48716416,3 3.06449284,3.38604019 3.00672773,3.88337887 L3,4 L3,20 C3,20.5128358 3.38604019,20.9355072 3.88337887,20.9932723 L4,21 L35,21 C35.5128358,21 35.9355072,20.6139598 35.9932723,20.1166211 L36,20 L36,4 C36,3.48716416 35.6139598,3.06449284 35.1166211,3.00672773 L35,3 Z"></path>
+            <rect x="6" y="13" width="3" height="11" rx="1.5"></rect>
+            <rect x="30" y="13" width="3" height="11" rx="1.5"></rect>
+            <rect x="12" y="13" width="3" height="11" rx="1.5"></rect>
+            <rect x="24" y="6" width="3" height="18" rx="1.5"></rect>
+            <rect x="18" y="13" width="3" height="11" rx="1.5"></rect>
+            <rect x="6" y="27" width="27" height="3" rx="1.5"></rect>
+        </g>
+    </g>
+</svg>
