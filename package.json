@@ -40,7 +40,8 @@
     "resemblejs": "^4.1.0"
   },
   "scripts": {
-    "grunt": "grunt"
+    "grunt": "grunt",
+    "make": "make clean"
   },
   "resolutions": {
     "graceful-fs": "^4.2.9"
