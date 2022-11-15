@@ -1,10 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg width="48px" height="48px" viewBox="0 0 48 48" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <title>纯净模式_lm</title>
-    <g id="纯净模式_lm" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g transform="translate(1.000000, 1.000000)" fill="#4D4D4D" fill-rule="nonzero" id="路径">
-            <polygon points="40 0 42.2274 4.77261 47 7 42.2274 9.2274 40 14 37.7726 9.2274 33 7 37.7726 4.77261"></polygon>
-            <path d="M23,0 L30.3186,15.6814 L46,23 L30.3186,30.3186 L23,46 L15.6814,30.3186 L0,23 L15.6814,15.6814 L23,0 Z M28.0614065,17.9385935 L23,7.093 L17.9385935,17.9385935 L7.093,23 L17.9385935,28.0614065 L22.999,38.906 L28.0614065,28.0614065 L38.906,22.999 L28.0614065,17.9385935 Z"></path>
-        </g>
-    </g>
+<svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+    <path fill-rule="evenodd" clip-rule="evenodd"
+        d="M24 1L31.3186 16.6814L47 24L31.3186 31.3186L24 47L16.6814 31.3186L1 24L16.6814 16.6814L24 1ZM29.0614 18.9386L39.9063 24L29.0614 29.0614L24 39.9063L18.9386 29.0614L8.09369 24L18.9386 18.9386L24 8.09369L29.0614 18.9386ZM43.2274 5.77261L41 1L38.7726 5.77261L34 8L38.7726 10.2274L41 15L43.2274 10.2274L48 8L43.2274 5.77261Z" />
 </svg>
