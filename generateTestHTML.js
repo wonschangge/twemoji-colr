@@ -6,7 +6,7 @@ const result = fs.readdirSync("build/colorGlyphs");
 
 let html = "";
 
-fs.writeFileSync('build/result', JSON.stringify(result))
+fs.writeFileSync('build/result.json', JSON.stringify(result))
 
 for (const item of result) {
   html += `<a data-icon="${item.slice(0, -4)}"></a>`;
