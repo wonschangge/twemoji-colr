@@ -59,3 +59,8 @@ $(SVGS) :
 
 test :
 	$(TEST_HTML)
+
+clean:
+	rm -rf build/
+	rm -f star-icons.zip
+	make $(FINAL_TARGET)

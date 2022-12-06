@@ -6,6 +6,8 @@ const result = fs.readdirSync("build/colorGlyphs");
 
 let html = "";
 
+fs.writeFileSync('build/result.json', JSON.stringify(result))
+
 for (const item of result) {
   html += `<a data-icon="${item.slice(0, -4)}"></a>`;
 }
@@ -29,9 +31,22 @@ fs.writeFileSync("test_star_icons.html", `<!DOCTYPE html>
       font-style: normal;
     }
 
+    a {
+      box-sizing: content-box;
+      display: inline-block;
+      width: 2rem;
+      height: 2rem;
+      text-decoration: none;
+      border: solid 1px #eee;
+      text-align: center;
+      margin: -1px;
+      line-height: 1;
+      color: rgba(77, 77, 77, 1); /* 线性图标/常规黑 */
+      background: linear-gradient(134.78deg, #F7F5F7 2.34%, #FAFAFA 34.11%, #E1E4F2 100%);
+    }
+
     [data-icon]:before  {
       font-family: "${FONT_NAME}";
-      content: '\\f101';
       content: attr(data-icon);
       display: inline-block;
       font-weight: 500;
@@ -41,6 +56,13 @@ fs.writeFileSync("test_star_icons.html", `<!DOCTYPE html>
       text-rendering: optimizeLegibility;
       font-size: 30px;
       -webkit-font-smoothing: antialiased;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      a {
+        color: rgba(244, 244, 244, 1); /* 常规白 */
+        background: linear-gradient(101.98deg, #4E5161 1.12%, #363A47 96.75%);
+      }
     }
   </style>
 </body>

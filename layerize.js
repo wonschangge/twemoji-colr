@@ -68,11 +68,12 @@ function expandColor(c) {
 
     // 遇到 ttx CPAL 部分报错时，查看 ttx 文件中的对应部分内容，来此增加色值解析
     switch (c) {
-        case 'red': c = '#f00';
-        case 'green': c = '#008000';
-        case 'blue': c = '#00f';
-        case 'navy': c = '#000080';
-        case 'black': c = '#000';
+        case 'red': c = '#f00';break;
+        case 'green': c = '#008000';break;
+        case 'blue': c = '#00f';break;
+        case 'navy': c = '#000080';break;
+        case 'black': c = '#000';break;
+        case 'white': c = '#fff';break;
     }
 
     // c is a hex color that might be shorthand (3 instead of 6 digits)
@@ -510,9 +511,9 @@ function processFile(fileName, data) {
                     }
                     if (fill !== 'none') {
                         var f = JSON.parse(JSON.stringify(e));
-                        f['$']['stroke'] = 'none';
-                        f['$']['stroke-width'] = '0';
-                        f['$']['fill'] = '#000';
+                        // f['$']['stroke'] = 'none';
+                        // f['$']['stroke-width'] = '0';
+                        // f['$']['fill'] = '#000';
                         if (opacity !== 1.0) {
                             fill = applyOpacity(fill, opacity);
                         }
