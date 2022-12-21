@@ -1,0 +1,1 @@
+singal-shut-down 指示SIM卡欠费停机

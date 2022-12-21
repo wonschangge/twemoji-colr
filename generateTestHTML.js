@@ -43,6 +43,7 @@ fs.writeFileSync("test_star_icons.html", `<!DOCTYPE html>
       line-height: 1;
       color: rgba(77, 77, 77, 1); /* 线性图标/常规黑 */
       background: linear-gradient(134.78deg, #F7F5F7 2.34%, #FAFAFA 34.11%, #E1E4F2 100%);
+      background: lightblue;
     }
 
     [data-icon]:before  {
